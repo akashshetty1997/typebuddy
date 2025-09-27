@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/animated-container";
 import { SmoothButton } from "@/components/ui/smooth-button";
 import { SectionTransition } from "@/components/ui/section-transition";
-import { ArrowRight, Sparkles, Shield, Zap, Users } from "lucide-react";
+import { ArrowRight, Sparkles, Shield, Zap, Users, X, Maximize2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface HeroSectionProps {
   data: HeroSectionType;
@@ -19,6 +19,8 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ data }: HeroSectionProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const modalVideoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -30,6 +32,56 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
       });
     }
   }, []);
+
+  const openVideoModal = () => {
+    setIsVideoModalOpen(true);
+    // Pause the small video when modal opens
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
+  const closeVideoModal = () => {
+    setIsVideoModalOpen(false);
+    // Resume the small video when modal closes
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        console.log("Autoplay prevented by browser");
+      });
+    }
+    // Pause the modal video
+    if (modalVideoRef.current) {
+      modalVideoRef.current.pause();
+    }
+  };
+
+  useEffect(() => {
+    if (isVideoModalOpen && modalVideoRef.current) {
+      modalVideoRef.current.playbackRate = 2;
+      modalVideoRef.current.play().catch(() => {
+        console.log("Autoplay prevented by browser");
+      });
+    }
+  }, [isVideoModalOpen]);
+
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeVideoModal();
+      }
+    };
+    
+    if (isVideoModalOpen) {
+      document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+    
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isVideoModalOpen]);
 
   return (
     <SectionTransition sectionId="hero">
@@ -143,7 +195,10 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
                   
                   {/* Professional Container */}
                   <div className="relative bg-gradient-to-br from-card/95 via-card to-card/90 backdrop-blur-xl rounded-3xl p-6 lg:p-10 shadow-2xl border border-border/40 hover:border-primary/30 transition-all duration-700">
-                    <div className="aspect-[4/3] bg-gradient-to-br from-background/98 to-background/95 rounded-2xl shadow-inner border border-border/30 flex items-center justify-center relative overflow-hidden group">
+                    <div 
+                      className="aspect-[4/3] bg-gradient-to-br from-background/98 to-background/95 rounded-2xl shadow-inner border border-border/30 flex items-center justify-center relative overflow-hidden group cursor-pointer"
+                      onClick={openVideoModal}
+                    >
                       
                       {/* Sophisticated Background */}
                       <div className="absolute inset-0">
@@ -179,25 +234,83 @@ export const HeroSection = ({ data }: HeroSectionProps) => {
                         </video>
                       </motion.div>
 
-                      {/* Subtle Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      {/* Zoom Icon Overlay */}
+                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
+                          <Maximize2 className="w-6 h-6 text-gray-800" />
+                        </div>
+                      </div>
                     </div>
                     
                     {/* Professional Badge */}
                     <div className="mt-6 text-center">
-                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-full">
+                      <button
+                        onClick={openVideoModal}
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-primary/5 hover:from-primary/15 hover:to-primary/10 border border-primary/20 hover:border-primary/30 rounded-full transition-all duration-300 hover:scale-105 cursor-pointer"
+                      >
                         <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                        <span className="text-xs font-medium text-primary tracking-wide">Interactive Demo</span>
-                      </div>
+                        <span className="text-xs font-medium text-primary tracking-wide">Click to Watch Full Demo</span>
+                      </button>
                     </div>
                   </div>
                 </div>
               </motion.div>
             </AnimatedContainer>
           </div>
-
-
         </div>
+
+        {/* Video Modal */}
+        {isVideoModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-[90vw] h-[90vh] max-w-6xl max-h-4xl bg-background rounded-2xl shadow-2xl overflow-hidden"
+            >
+              {/* Close Button */}
+              <button
+                onClick={closeVideoModal}
+                className="absolute top-4 right-4 z-10 p-3 bg-background/90 hover:bg-background rounded-full shadow-lg transition-all duration-200 hover:scale-105 backdrop-blur-sm border border-border/50"
+                aria-label="Close video"
+              >
+                <X className="w-6 h-6 text-foreground" />
+              </button>
+
+              {/* Modal Video */}
+              <div className="w-full h-full flex items-center justify-center p-8">
+                <video
+                  ref={modalVideoRef}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  className="w-full h-full object-contain rounded-lg shadow-2xl"
+                >
+                  <source src="/intro/intro.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+
+              {/* Modal Badge */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-background/90 backdrop-blur-sm border border-border/50 rounded-full shadow-lg">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                  <span className="text-xs font-medium text-primary tracking-wide">TypeBuddy Demo</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Click outside to close */}
+            <div 
+              className="absolute inset-0 -z-10"
+              onClick={closeVideoModal}
+            />
+          </div>
+        )}
       </SectionWrapper>
     </SectionTransition>
   );

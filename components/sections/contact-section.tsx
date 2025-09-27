@@ -35,9 +35,15 @@ export const ContactSection = ({ data }: ContactSectionProps) => {
   return (
     <SectionTransition sectionId="contact">
       <SectionWrapper className="relative overflow-hidden bg-gradient-to-b from-background to-primary/5 py-16 lg:py-20 min-h-screen">
-        {/* Subtle grid. Non-overlapping. */}
+        {/* Subtle grid - Safari compatible */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="h-full w-full opacity-[0.04] [mask-image:radial-gradient(60%_60%_at_50%_35%,#000_65%,transparent)] bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:44px_44px]" />
+          <div 
+            className="h-full w-full opacity-[0.04] bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:44px_44px]"
+            style={{
+              maskImage: 'radial-gradient(60% 60% at 50% 35%, #000 65%, transparent)',
+              WebkitMaskImage: 'radial-gradient(60% 60% at 50% 35%, #000 65%, transparent)',
+            }}
+          />
         </div>
 
         <SectionHeader title={data.title} subtitle={data.subtitle} />
@@ -50,6 +56,7 @@ export const ContactSection = ({ data }: ContactSectionProps) => {
                 initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
                 whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
                 className="mb-8 lg:mb-10 text-center"
               >
                 <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 lg:px-4 py-1.5 lg:py-2">
@@ -70,11 +77,34 @@ export const ContactSection = ({ data }: ContactSectionProps) => {
 
               {/* Equal-height cards. No layout shift on hover. */}
               <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-                {data.team.members.map((member) => (
-                  <Card
+                {data.team.members.map((member, index) => (
+                  <motion.div
                     key={member.id}
-                    className="isolate flex h-full flex-col overflow-hidden rounded-xl lg:rounded-2xl border bg-card"
+                    initial={prefersReducedMotion ? {} : { opacity: 0, y: 20, scale: 0.95 }}
+                    whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: index * 0.1,
+                      ease: "easeOut",
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    whileHover={prefersReducedMotion ? {} : { 
+                      y: -4,
+                      transition: { duration: 0.2, ease: "easeOut" }
+                    }}
                   >
+                    <Card
+                      className="isolate flex h-full flex-col overflow-hidden rounded-xl lg:rounded-2xl border bg-card transform-gpu"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        WebkitTransform: 'translateZ(0)',
+                        transform: 'translateZ(0)',
+                      }}
+                    >
                     {/* Top section */}
                     <div className="p-5 lg:p-7">
                       <div className="mx-auto mb-4 lg:mb-5 h-20 w-20 lg:h-24 lg:w-24">
@@ -151,7 +181,8 @@ export const ContactSection = ({ data }: ContactSectionProps) => {
                         <span className="font-medium">LinkedIn</span>
                       </a>
                     </div>
-                  </Card>
+                    </Card>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -268,7 +299,15 @@ function SectionBox({
 }) {
   return (
     <div className="relative mb-12 lg:mb-16">
-      <div className="rounded-2xl lg:rounded-3xl border bg-card/95 p-6 md:p-8 lg:p-12 shadow-lg">
+      <div 
+        className="rounded-2xl lg:rounded-3xl border bg-card/95 p-6 md:p-8 lg:p-12 shadow-lg transform-gpu"
+        style={{
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          WebkitTransform: 'translateZ(0)',
+          transform: 'translateZ(0)',
+        }}
+      >
         {children}
       </div>
     </div>

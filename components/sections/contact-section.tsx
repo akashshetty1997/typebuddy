@@ -78,10 +78,10 @@ export const ContactSection = ({ data }: ContactSectionProps) => {
                     {/* Top section */}
                     <div className="p-5 lg:p-7">
                       <div className="mx-auto mb-4 lg:mb-5 h-20 w-20 lg:h-24 lg:w-24">
-                        {(member as any).image ? (
+                        {member.image ? (
                           <div className="relative h-20 w-20 lg:h-24 lg:w-24 rounded-full ring-2 lg:ring-4 ring-primary/10">
                             <Image
-                              src={(member as any).image as string}
+                              src={member.image}
                               alt={member.name}
                               width={96}
                               height={96}
@@ -110,25 +110,24 @@ export const ContactSection = ({ data }: ContactSectionProps) => {
                         </h4>
 
                         <p className="mt-1 text-xs lg:text-sm text-muted-foreground">
-                          {(member as any).role ?? "Full-Stack Developer"}
+                          {member.role ?? "Full-Stack Developer"}
                         </p>
 
-                        {(member as any).location && (
+                        {member.location && (
                           <p className="mt-1 inline-flex items-center justify-center gap-1 text-[10px] lg:text-xs text-muted-foreground/80">
                             <MapPin className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
-                            {(member as any).location as string}
+                            {member.location}
                           </p>
                         )}
 
-                        {Array.isArray((member as any).tags) &&
-                          (member as any).tags.length > 0 && (
+                        {member.tags && member.tags.length > 0 && (
                             <div className="mt-2 lg:mt-3 flex flex-wrap justify-center gap-1.5 lg:gap-2">
-                              {(member as any).tags.slice(0, 3).map((t: string) => (
+                              {member.tags.slice(0, 3).map((tag: string) => (
                                 <span
-                                  key={t}
+                                  key={tag}
                                   className="rounded-full border border-border/60 bg-card/60 px-1.5 lg:px-2 py-0.5 text-[9px] lg:text-[11px] text-foreground/85"
                                 >
-                                  {t}
+                                  {tag}
                                 </span>
                               ))}
                             </div>
@@ -191,7 +190,7 @@ export const ContactSection = ({ data }: ContactSectionProps) => {
 
           {/* CTA */}
           <AnimatedContainer delay={0.15}>
-            <SectionBox dense>
+            <SectionBox>
               <div className="mx-auto mb-4 lg:mb-5 inline-flex items-center gap-1.5 lg:gap-2 rounded-full bg-primary/10 px-2.5 lg:px-3 py-1 lg:py-1.5">
                 <Coffee className="h-3.5 w-3.5 lg:h-4 lg:w-4 text-primary" />
                 <span className="text-[10px] lg:text-xs font-medium text-primary">
@@ -264,10 +263,8 @@ export const ContactSection = ({ data }: ContactSectionProps) => {
 
 function SectionBox({
   children,
-  dense = false,
 }: {
   children: React.ReactNode;
-  dense?: boolean;
 }) {
   return (
     <div className="relative mb-12 lg:mb-16">

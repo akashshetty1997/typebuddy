@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { TestimonialsData } from "@/types";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -39,7 +39,7 @@ export const TestimonialsSection = ({ data }: TestimonialsSectionProps) => {
     return Math.abs(offset) * velocity;
   };
 
-  const paginate = (newDirection: number) => {
+  const paginate = useCallback((newDirection: number) => {
     setDirection(newDirection);
     setCurrentIndex((prevIndex) => {
       if (newDirection === 1) {
@@ -47,14 +47,14 @@ export const TestimonialsSection = ({ data }: TestimonialsSectionProps) => {
       }
       return prevIndex === 0 ? data.testimonials.length - 1 : prevIndex - 1;
     });
-  };
+  }, [data.testimonials.length]);
 
   useEffect(() => {
     const timer = setInterval(() => {
       paginate(1);
     }, 5000);
     return () => clearInterval(timer);
-  }, [currentIndex, paginate]);
+  }, [paginate]);
 
   const currentTestimonial = data.testimonials[currentIndex];
 

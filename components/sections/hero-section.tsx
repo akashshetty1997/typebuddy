@@ -11,7 +11,6 @@ import { SmoothButton } from "@/components/ui/smooth-button";
 import { SectionTransition } from "@/components/ui/section-transition";
 import { ArrowRight, Sparkles, Shield, Zap, Users } from "lucide-react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 interface HeroSectionProps {

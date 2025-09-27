@@ -95,9 +95,9 @@ const FeaturesSection = ({ data }: FeaturesSectionProps) => {
                         >
                           {/* Fixed aspect ratio container for consistent image sizing */}
                           <div className="relative w-full h-full bg-black rounded-lg overflow-hidden">
-                            {(currentFeature as any).image && (
+                            {currentFeature.image && (
                               <Image
-                                src={(currentFeature as any).image}
+                                src={currentFeature.image}
                                 alt={currentFeature.title}
                                 fill
                                 className="object-contain p-2 lg:p-4"
@@ -125,15 +125,18 @@ const FeaturesSection = ({ data }: FeaturesSectionProps) => {
                       className="absolute bottom-2 right-2 lg:bottom-4 lg:right-4 w-16 h-16 lg:w-24 lg:h-24 rounded-lg overflow-hidden shadow-lg border-2 border-background bg-background"
                     >
                       <div className="relative w-full h-full bg-black">
-                        {(data.features[(currentIndex + 1) % data.features.length] as any).image && (
-                          <Image
-                            src={(data.features[(currentIndex + 1) % data.features.length] as any).image}
-                            alt={data.features[(currentIndex + 1) % data.features.length].title}
-                            fill
-                            className="object-contain p-1 opacity-60 rounded-md"
-                            sizes="(max-width: 768px) 64px, 96px"
-                          />
-                        )}
+                        {(() => {
+                          const nextFeature = data.features[(currentIndex + 1) % data.features.length];
+                          return nextFeature.image && (
+                            <Image
+                              src={nextFeature.image}
+                              alt={nextFeature.title}
+                              fill
+                              className="object-contain p-1 opacity-60 rounded-md"
+                              sizes="(max-width: 768px) 64px, 96px"
+                            />
+                          );
+                        })()}
                       </div>
                     </motion.div>
                   </motion.div>

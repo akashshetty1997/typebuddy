@@ -10,7 +10,6 @@ import {
   getFeatures,
   getTestimonials,
   getContact,
-  getStats,
 } from "@/lib/data-loader";
 
 export default function Home() {
@@ -19,7 +18,6 @@ export default function Home() {
   const features = getFeatures();
   const testimonials = getTestimonials();
   const contact = getContact();
-  const stats = getStats();
 
   return (
     <MainLayout logo={siteContent.logo} navigation={siteContent.navigation}>

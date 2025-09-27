@@ -54,6 +54,7 @@ export interface Feature {
   title: string;
   description: string;
   details?: string;
+  image?: string;
 }
 
 export interface FeaturesData {
@@ -105,13 +106,16 @@ export interface ContactCTA {
   button: ButtonData;
 }
 
-// Team Member Type (simplified)
+// Team Member Type (comprehensive)
 export interface TeamMember {
   id: string;
   name: string;
   email: string;
   linkedin: string;
   image?: string;
+  role?: string;
+  location?: string;
+  tags?: string[];
 }
 
 // Update ContactData interface (simplified)

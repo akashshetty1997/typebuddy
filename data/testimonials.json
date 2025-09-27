@@ -1,0 +1,42 @@
+{
+  "title": "What Our Users Say",
+  "subtitle": "Trusted by thousands of professionals worldwide",
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Sandhya m",
+      "role": "Charted Accountant",
+      "company": "Govindaraju & Co",
+      "content": "Huge Time Saver! Super easy to use because you just set a shortcut and it expands instantly into full text. Perfect for emails, forms and repetitive replies. Simple, fast and reliable.",
+      "image": "/testimonials/sarah.jpg",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "name": "Sourav Das",
+      "role": "Student",
+      "company": "Northeastern University",
+      "content": "This extension is perfect for streamlining job applications. I’ve been using it for a while, and it has significantly reduced the time it takes me to complete applications. I highly recommend it to anyone currently searching for a job and struggling with the repetitive application process.",
+      "image": "/testimonials/michael.jpg",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "name": "Ratan",
+      "role": "Student",
+      "company": "Northeastern University",
+      "content": "Using it to fast track messaging new LinkedIn connections and repetitive prompts on multiple chatbots. Works like a charm.",
+      "image": "/testimonials/emily.jpg",
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "name": "Ananth shetty",
+      "role": "Junior Software Engineer",
+      "company": "Supatrack Inc",
+      "content": "I’ve been using this for school and work projects, and it’s been a huge time-saver. No glitches, super easy to set up, and I don’t have to worry about my data going anywhere. Definitely recommend!.",
+      "image": "/testimonials/david.jpg",
+      "rating": 5
+    }
+  ]
+}

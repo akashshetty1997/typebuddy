@@ -1,0 +1,67 @@
+{
+  "title": "Get in Touch",
+  "subtitle": "We'd love to hear from you",
+  "team": {
+    "title": "Meet Our Team",
+    "members": [
+      {
+        "id": "skandhan",
+        "name": "Skandhan",
+        "email": "skandhanmnss208@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/skandhan-madhusudhana/",
+        "image": "/profile/skandhan.jpg"
+      },
+      {
+        "id": "swathi",
+        "name": "Swathi",
+        "email": "swathi.meghana9@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/swathi-meghana/",
+        "image": "/profile/swathi.jpg"
+      },
+      {
+        "id": "akash",
+        "name": "Akash",
+        "email": "shridharshetty.a@northeastern.edu",
+        "linkedin": "https://www.linkedin.com/in/akashshetty1997/",
+        "image": "/profile/akash.png"
+      }
+    ]
+  },
+  "suggestions": {
+    "title": "We Welcome Your Feedback!",
+    "description": "Have suggestions to make our extension better? Found a bug? Want to request a feature? We're all ears! Your feedback helps us improve and build the text expander you need.",
+    "button": {
+      "text": "Send Suggestion",
+      "href": "mailto:skandhanmnss208@gmail.com?subject=TypeBuddy Suggestion"
+    }
+  },
+  "support": {
+    "title": "Resources",
+    "links": [
+      {
+        "label": "Documentation",
+        "href": "/docs"
+      },
+      {
+        "label": "FAQ",
+        "href": "/faq"
+      },
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy"
+      },
+      {
+        "label": "Terms of Service",
+        "href": "/terms"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to boost your productivity?",
+    "description": "Join thousands of users who save hours every week with our text expander.",
+    "button": {
+      "text": "Install Extension",
+      "href": "https://chromewebstore.google.com/detail/TypeBuddy/mkiefkcpamkfebmojokkmiahllpihfkl?hl=en-US"
+    }
+  }
+}

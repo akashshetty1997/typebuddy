@@ -1,0 +1,28 @@
+{
+  "stats": [
+    {
+      "id": "users",
+      "value": "50K+",
+      "label": "Active Users",
+      "icon": "Users"
+    },
+    {
+      "id": "time",
+      "value": "2M+",
+      "label": "Hours Saved",
+      "icon": "Clock"
+    },
+    {
+      "id": "snippets",
+      "value": "10M+",
+      "label": "Snippets Expanded",
+      "icon": "Zap"
+    },
+    {
+      "id": "rating",
+      "value": "4.9",
+      "label": "Chrome Store Rating",
+      "icon": "Star"
+    }
+  ]
+}

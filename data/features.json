@@ -1,0 +1,50 @@
+﻿{
+  "title": "Features that Matter",
+  "subtitle": "Built for productivity, designed for simplicity",
+  "features": [
+    {
+      "id": "reliability",
+      "icon": "Shield",
+      "title": "Create Shortcuts Instantly",
+      "description": "Define your own triggers like email;; or intro;; and expand them into full phrases with a single keystroke. No setup hassles just add, save, and type less.",
+      "details": "Simple trigger format (word;;). Works everywhere you type. Save time by reusing your most common text.",
+      "image": "/features/screenone.jpg"
+    },
+    {
+      "id": "privacy",
+      "icon": "Lock",
+      "title": "Smart Cursor Placement",
+      "description": "Place your cursor exactly where you need it after expansion using the ${|} marker. Perfect for filling in names, dates, or custom details without breaking your flow.",
+      "details": "${|} marker puts the caret inside your snippet. Keeps typing seamless in forms, emails, or docs. Supports literal ${ with \\${} escape.",
+      "image": "/features/screentwo.png"
+    },
+    {
+      "id": "simplicity",
+      "icon": "Sparkles",
+      "title": "Manage Your Snippets with Ease",
+      "description": "Quickly search, copy, edit, or delete snippets right from the popup. Stay organized and find what you need in seconds.",
+      "details": "Lightning-fast search. One-click copy to clipboard. Edit or delete anytime. Always synced across Chrome.",
+      "image": "/features/screenthree.png"
+    }
+  ],
+  "additionalFeatures": [
+    {
+      "id": "sync",
+      "icon": "RefreshCw",
+      "title": "Chrome Sync",
+      "description": "Automatically sync your shortcuts across all your Chrome browsers"
+    },
+    {
+      "id": "export",
+      "icon": "Download",
+      "title": "Export & Import",
+      "description": "Backup and restore your shortcuts anytime"
+    },
+    {
+      "id": "keyboard",
+      "icon": "Keyboard",
+      "title": "Smart Keyboard Support",
+      "description": "Works with international keyboards and special characters"
+    }
+  ]
+}

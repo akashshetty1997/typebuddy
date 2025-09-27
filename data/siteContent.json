@@ -1,0 +1,59 @@
+{
+  "logo": {
+    "text": ";; TypeBuddy",
+    "tagline": "Your typing companion"
+  },
+  "navigation": [
+    {
+      "id": "hero",
+      "label": "Home",
+      "href": "#hero",
+      "icon": "Home"
+    },
+    {
+      "id": "problem-solution",
+      "label": "Why TypeBuddy",
+      "href": "#problem-solution",
+      "icon": "Lightbulb"
+    },
+    {
+      "id": "features",
+      "label": "Features",
+      "href": "#features",
+      "icon": "Sparkles"
+    },
+    {
+      "id": "testimonials",
+      "label": "Testimonials",
+      "href": "#testimonials",
+      "icon": "MessageSquare"
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "href": "#contact",
+      "icon": "Mail"
+    }
+  ],
+  "hero": {
+    "title": "Your typing companion",
+    "subtitle": "Simple, secure, and fast - your words only a keystroke away.",
+    "description": "Snippets stay private and sync with Chrome.",
+    "primaryButton": {
+      "text": "Get Started Free",
+      "href": "https://chromewebstore.google.com/detail/typebuddy/mkiefkcpamkfebmojokkmiahllpihfkl?hl=en-US"
+    },
+    "secondaryButton": {
+      "text": "Learn More",
+      "href": "#features"
+    }
+  },
+  "problem": {
+    "title": "The Problem",
+    "description": "Most text expanders are bloated with unnecessary features, require complex setup, and store your sensitive snippets on remote servers. You waste time navigating confusing interfaces when you should be focused on getting work done. Your productivity suffers while your privacy hangs in the balance."
+  },
+  "solution": {
+    "title": "The TypeBuddy Solution",
+    "subtitle": "TypeBuddy eliminates the frustration with a beautifully simple approach. Your snippets stay completely private, sync seamlessly with Chrome, and expand instantly with zero learning curve. It's the text expander that just works."
+  }
+}
